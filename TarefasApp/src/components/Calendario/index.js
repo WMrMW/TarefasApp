@@ -3,7 +3,7 @@ import { Text, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Container } from '../../styles';
 
-export default function Home() {
+export default function Calendario() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar backgroundColor="transparent" translucent={true} />

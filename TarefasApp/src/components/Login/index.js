@@ -1,12 +1,16 @@
 import React from 'react';
-import { Image, StatusBar, StyleSheet, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
+import { Image, StatusBar, StyleSheet, SafeAreaView,View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Container, CaixaDeTexto, Label, Button } from '../../styles';
 import icon from '../../assets/icon.png';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
+
+    const navigation = useNavigation();
+
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <StatusBar backgroundColor="transparent" translucent={true} />
             <LinearGradient colors={['#369D3D', '#068985', '#739EEC']} style={{ flex: 1 }}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -21,14 +25,21 @@ export default function Login() {
                             <CaixaDeTexto secureTextEntry={true} />
                         </KeyboardAvoidingView>
                         <View style={styles.btnArea}>
-                            <Button>
+                            <Button
+                                onPress={() => {navigation.navigate('Principal')}}>
                                 <Text style={styles.btnText}>Entrar</Text>
                             </Button>
+                            <TouchableOpacity
+                                style={{paddingTop:6}}
+                                onPress={() => { navigation.navigate("Cadastro") }}
+                            >
+                                <Text style={styles.msgCadastro}>Não possui uma conta?</Text>
+                            </TouchableOpacity>
                         </View>
                     </Container>
                 </TouchableWithoutFeedback>
             </LinearGradient>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -55,9 +66,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     btnText: {
-        fontSize:22,
-        fontWeight:'bold',
-        color:'#ffffff'
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#ffffff'
     },
-
+    msgCadastro: {
+        fontSize: 14,
+        color: 'black',
+        fontWeight: 'bold',
+    }
 });
